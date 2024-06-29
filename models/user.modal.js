@@ -1,4 +1,5 @@
 import pool from "../configs/db.config.js";
+import ApiError from "../utils/ApiError.js";
 export async function createUser(user) {
   const sql = "INSERT INTO user (email, password) VALUES (?, ?)";
   const values = [user.email, user.password];
@@ -15,6 +16,6 @@ export async function getUserByEmail(email) {
     const [result] = await pool.query(sql, [email]);
     return result[0];
   } catch (err) {
-    return null;
+    throw new ApiError("Database query failed");
   }
 }

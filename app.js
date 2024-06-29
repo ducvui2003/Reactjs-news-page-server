@@ -3,8 +3,8 @@ import cors from "cors";
 import "dotenv/config";
 
 import router from "./routes/index.js";
-import { authenticateToken } from "./middlewares/auth.js";
 import { errorHandlingMiddleware } from "./middlewares/errorHandling.middleware.js";
+import { jwtHandlingMiddleware } from "./middlewares/jwt.middleware.js";
 
 const PORT = process.env.PORT;
 const app = express();
@@ -16,13 +16,13 @@ var corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use(jwtHandlingMiddleware);
 
 // Use routes
 app.use("/", router);
-app.use(authenticateToken);
+
 // Error handling middleware
 app.use(errorHandlingMiddleware);
-
 app.listen(PORT, function () {
   console.log(`CORS-enabled web server listening on port ${PORT}`);
 });

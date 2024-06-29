@@ -11,7 +11,15 @@ POST http://localhost:5000/auth/register
 Content-Type: application/json
 
 {
-  "email": "admin",
+  "email": "admin@gmail.com",
   "password": "admin",
   "rePassword": "admin"
+}
+###
+POST http://localhost:5000/auth/logout
+Content-Type: application/json
+
+{
+  "email": "admin",
+  "password": "admin"
 }
