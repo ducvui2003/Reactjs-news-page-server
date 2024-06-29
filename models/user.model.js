@@ -7,7 +7,7 @@ export async function createUser(user) {
     const [result] = await pool.query(sql, values);
     return result.insertId;
   } catch (err) {
-    return null;
+    throw new ApiError("Database query failed");
   }
 }
 export async function getUserByEmail(email) {

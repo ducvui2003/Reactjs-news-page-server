@@ -4,7 +4,6 @@ import { tokenBlacklist } from "./blacklist.js";
 const protectedPaths = ["/profile", "/comment", "/auth/logout"];
 export function jwtHandlingMiddleware(req, res, next) {
   const requestedPath = req.path;
-  console.log("path", requestedPath);
   if (!isProtectedPath(requestedPath)) {
     return next();
   }
@@ -15,14 +14,13 @@ export function jwtHandlingMiddleware(req, res, next) {
     if (tokenBlacklist.includes(token)) {
       return res.status(401).json({ statusCode: 401, message: "Unauthorized" });
     }
-
-    jwt.verify(token, process.env.SECRET_TOKEN, (err, user) => {
-      if (err) {
-        return res.status(403).json({ statusCode: 403, message: "Forbidden" });
-      }
-      req.user = user;
+    try {
+      const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+      req.email = decoded.email;
       next();
-    });
+    } catch (err) {
+      return res.status(403).json({ statusCode: 403, message: "Forbidden" });
+    }
   }
   next();
 }

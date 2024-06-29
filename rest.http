@@ -2,7 +2,7 @@ POST http://localhost:5000/auth/login
 Content-Type: application/json
 
 {
-  "email": "admin",
+  "email": "ducvui2001@gmail.com",
   "password": "admin"
 }
 
@@ -11,7 +11,7 @@ POST http://localhost:5000/auth/register
 Content-Type: application/json
 
 {
-  "email": "admin@gmail.com",
+  "email": "ducvui2001@gmail.com",
   "password": "admin",
   "rePassword": "admin"
 }
@@ -22,4 +22,34 @@ Content-Type: application/json
 {
   "email": "admin",
   "password": "admin"
+}
+
+
+### Create Comment
+POST http://localhost:5000/comment/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImR1Y3Z1aTIwMDFAZ21haWwuY29tIiwiaWF0IjoxNzE5NjcyNzg5LCJleHAiOjE3MTk2NzYzODl9.Qb2bWSHkjKkzYQT5n-1rGTXDaUpP-PGTcbJSNcWPC6g
+
+{
+  "email":"admin@gmail.com",
+  "content": "Hello",
+  "newsId": "A8"
+}
+
+### Get Comment by newsId
+GET http://localhost:5000/comment/news/get?newsId=A8
+
+### Get comment by userId
+GET http://localhost:5000/comment/user/get
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImR1Y3Z1aTIwMDFAZ21haWwuY29tIiwiaWF0IjoxNzE5NjYwMTk2LCJleHAiOjE3MTk2NjM3OTZ9.coSWCgXugw7dwLzCtCS-3q7ZQyt4ac35r7FXSAJp5H8
+
+
+### Update Comment
+PUT http://localhost:5000/comment/update/4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImR1Y3Z1aTIwMDFAZ21haWwuY29tIiwiaWF0IjoxNzE5NjYwMTk2LCJleHAiOjE3MTk2NjM3OTZ9.coSWCgXugw7dwLzCtCS-3q7ZQyt4ac35r7FXSAJp5H8
+
+{
+  "content": "Duc Dz"
 }

@@ -1,4 +1,4 @@
-import { createUser, getUserByEmail } from "../models/user.modal.js";
+import { createUser, getUserByEmail } from "../models/user.model.js";
 import ApiError from "../utils/ApiError.js";
 import { hashPassword, verifyPassword } from "../utils/hashing.js";
 
