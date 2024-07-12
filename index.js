@@ -12,6 +12,8 @@ const corsOptions = {
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
+console.log("env:", process.env)
+
 app.listen(PORT, function () {
     console.log(`CORS-enabled web server listening on port ${PORT}`);
 });
