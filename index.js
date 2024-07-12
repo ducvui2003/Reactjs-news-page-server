@@ -10,6 +10,7 @@ const allowedOrigins = [process.env.URL_CLIENT_DEV, process.env.URL_CLIENT_PRODU
 console.log(allowedOrigins)
 const corsOptions = {
     origin: (origin, callback) => {
+        console.log("allowedOrigins", allowedOrigins)
         if (allowedOrigins.includes(origin) || !origin) {
             callback(null, true);
         } else {
@@ -78,7 +79,8 @@ app.get("/geo", cors(corsOptions), async (req, res, next) => {
 
 app.get("/lookup", cors(corsOptions), async (req, res, next) => {
     try {
-        const response = await axios.get(process.env.URL_IP_LOOKUP);
+        console.log("ip:", req.ip)
+        const response = await axios.get(`${process.env.URL_WEATHER}/${req.ip}?token=afe87b3f684fe8`);
         res.status(200).send(response.data);
     } catch (e) {
         res.status(404);
