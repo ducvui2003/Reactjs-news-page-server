@@ -42,7 +42,6 @@ app.get("/", cors(corsOptions), async (req, res, next) => {
         const response = await axios.get(`${process.env.URL_NEWS}${category}.rss`, {
             timeout: 5000
         });
-        console.log(response.data)
         res.status(200).send(response.data);
     } catch (err) {
         const errorXml = createErrorXml(
