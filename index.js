@@ -10,6 +10,7 @@ const allowedOrigins = [process.env.URL_CLIENT_DEV, process.env.URL_CLIENT_PRODU
 console.log(allowedOrigins)
 const corsOptions = {
     origin: (origin, callback) => {
+        console.log("allowedOrigins", allowedOrigins)
         if (allowedOrigins.includes(origin) || !origin) {
             callback(null, true);
         } else {
