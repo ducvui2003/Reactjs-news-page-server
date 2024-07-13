@@ -77,9 +77,13 @@ app.get("/geo", cors(corsOptions), async (req, res, next) => {
     }
 });
 
+app.get('/wakeup', (req, res) => {
+    console.log("wake up")
+    res.send('Server woken up successfully!');
+});
+
 app.get("/lookup", cors(corsOptions), async (req, res, next) => {
     try {
-        console.log("ip:", req.ip)
         const response = await axios.get(`${process.env.URL_WEATHER}/${req.ip}?token=afe87b3f684fe8`);
         res.status(200).send(response.data);
     } catch (e) {
